@@ -1,139 +1,468 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Uma coisa importante</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Uma coisinha para a Bella 💗</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
+
+            background:
+                radial-gradient(circle at 20% 20%, #ffd6e7 0%, transparent 25%),
+                radial-gradient(circle at 80% 80%, #ffc1dc 0%, transparent 25%),
+                linear-gradient(135deg, #ffeaf3, #ffd1e3);
+
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+
+            color: #6b3150;
+
+            overflow: hidden;
         }
+
+        /* CORAÇÕES NO FUNDO */
+
+        .coracao {
+            position: fixed;
+
+            color: rgba(255, 105, 160, 0.35);
+
+            font-size: 25px;
+
+            animation: flutuar 5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .c1 {
+            left: 10%;
+            top: 15%;
+        }
+
+        .c2 {
+            left: 85%;
+            top: 20%;
+            animation-delay: 1s;
+        }
+
+        .c3 {
+            left: 15%;
+            bottom: 15%;
+            animation-delay: 2s;
+        }
+
+        .c4 {
+            right: 10%;
+            bottom: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes flutuar {
+
+            0%, 100% {
+                transform: translateY(0) rotate(-10deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+
+        }
+
+        /* CAIXINHA */
 
         .caixa {
-            width: 400px;
-            padding: 35px;
-            border-radius: 20px;
-            background: #1e1e1e;
-            box-shadow: 0 0 30px #000;
+
+            width: min(90%, 430px);
+
+            padding: 40px 30px;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            border: 5px solid #ffb6d2;
+
+            border-radius: 35px;
+
+            box-shadow:
+                0 15px 35px rgba(200, 80, 130, 0.25),
+                inset 0 0 20px rgba(255, 180, 210, 0.25);
+
+            text-align: center;
+
+            position: relative;
+
+            animation: aparecer 0.8s ease;
         }
 
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+        /* LAÇO */
+
+        .laco {
+            font-size: 55px;
+
+            animation: pulinho 2s infinite ease-in-out;
+        }
+
+        @keyframes pulinho {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+        }
+
+        h1 {
+
+            color: #ff5f9e;
+
+            font-size: 30px;
+
+            margin: 10px 0;
+
+        }
+
+        p {
+
+            font-size: 18px;
+
+            line-height: 1.6;
+
+            color: #7b4960;
+
+        }
+
+        /* BOTÕES */
+
         button {
-            padding: 15px 25px;
+
+            padding: 14px 25px;
+
             margin: 8px;
+
             border: none;
-            border-radius: 10px;
+
+            border-radius: 20px;
+
             cursor: pointer;
+
             font-size: 17px;
-            transition: .2s;
+
+            font-family: inherit;
+
+            transition: 0.25s;
+
+            box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+
         }
 
         button:hover {
+
             transform: scale(1.08);
+
         }
 
         #sim {
-            background: #2ecc71;
+
+            background: #ff72aa;
+
             color: white;
+
+        }
+
+        #sim:hover {
+
+            background: #ff5799;
+
         }
 
         #nao {
-            background: #e74c3c;
-            color: white;
+
+            background: #ffd0df;
+
+            color: #a64d70;
+
         }
 
+        /* PIZZA */
+
         #pizza {
+
             display: none;
+
             font-size: 100px;
-            animation: girar 2s infinite linear;
+
+            margin-top: 15px;
+
+            animation: girar 3s infinite linear;
+
         }
 
         @keyframes girar {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
         }
+
+        /* ESTRELINHAS */
+
+        .estrelinha {
+
+            position: absolute;
+
+            color: #ff9bc1;
+
+            font-size: 22px;
+
+            animation: brilho 1.8s infinite ease-in-out;
+
+        }
+
+        .e1 {
+            top: 20px;
+            left: 25px;
+        }
+
+        .e2 {
+            top: 25px;
+            right: 30px;
+            animation-delay: 0.5s;
+        }
+
+        .e3 {
+            bottom: 25px;
+            left: 35px;
+            animation-delay: 1s;
+        }
+
+        .e4 {
+            bottom: 20px;
+            right: 35px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes brilho {
+
+            0%, 100% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<div class="caixa">
+    <!-- FUNDO -->
 
-    <h1 id="titulo">🚨 ATENÇÃO</h1>
+    <div class="coracao c1">💗</div>
+    <div class="coracao c2">💖</div>
+    <div class="coracao c3">💕</div>
+    <div class="coracao c4">💗</div>
 
-    <p id="texto">
-        Isabella, foi selecionada para receber uma mensagem extremamente importante.
-    </p>
 
-    <button id="sim" onclick="continuar()">CONTINUAR</button>
+    <div class="caixa">
 
-    <button id="nao" onclick="fugir()">Não quero</button>
+        <div class="estrelinha e1">✦</div>
+        <div class="estrelinha e2">✧</div>
+        <div class="estrelinha e3">✧</div>
+        <div class="estrelinha e4">✦</div>
 
-    <div id="pizza">🍕</div>
 
-</div>
+        <div class="laco">
+            🎀
+        </div>
 
-<script>
 
-let etapa = 0;
+        <h1 id="titulo">
+            Oiee Bella!
+        </h1>
 
-function continuar() {
 
-    etapa++;
+        <p id="texto">
 
-    if (etapa === 1) {
-        document.getElementById("titulo").innerText = "🤨 Tem certeza?";
-        document.getElementById("texto").innerText =
-            "Essa decisão pode mudar completamente o rumo da sua vida.";
-    }
+            Isabella, você foi selecionada
+            para receber uma coisa muito importante!
 
-    else if (etapa === 2) {
-        document.getElementById("titulo").innerText = "⚠️ ÚLTIMA CHANCE";
-        document.getElementById("texto").innerText =
-            "Depois disso não tem como voltar atrás.";
-    }
+        </p>
 
-    else if (etapa === 3) {
-        document.getElementById("titulo").innerText = "🍕 PARABÉNS";
-        document.getElementById("texto").innerText =
-            "Você ganhou uma pizza!";
-        
-        document.getElementById("pizza").style.display = "block";
 
-        document.getElementById("sim").innerText = "COMER 🍕";
-        document.getElementById("nao").style.display = "none";
-    }
+        <button id="sim" onclick="continuar()">
+            CONTINUAR 💗
+        </button>
 
-    else {
-        document.getElementById("titulo").innerText = "";
-        document.getElementById("texto").innerText =
-            "A pizza foi comida. Obrigado por participar. Depois me manda o feedback lá no zap por favor, foi feito com muito carinho";
-        
-        document.getElementById("pizza").innerText = "💀";
-    }
-}
 
-function fugir() {
+        <button id="nao" onclick="fugir()">
+            Não quero 😭(nao clica, nao vai funcionar hehe)
+        </button>
 
-    const botao = document.getElementById("nao (eu nao tentaria)");
 
-    botao.style.position = "absolute";
+        <div id="pizza">
+            🍕
+        </div>
 
-    botao.style.left =
-        Math.random() * (window.innerWidth - 150) + "px";
+    </div>
 
-    botao.style.top =
-        Math.random() * (window.innerHeight - 80) + "px";
-}
 
-</script>
+    <audio id="som" src="risada.mp3"></audio>
+
+
+    <script>
+
+        let etapa = 0;
+
+
+        function continuar() {
+
+            etapa++;
+
+
+            if (etapa === 1) {
+
+                document.getElementById("titulo").innerText =
+                    "🎀 Tem certeza?";
+
+                document.getElementById("texto").innerText =
+                    "É uma decisão muito importante... pensa com carinho. 💗";
+
+            }
+
+
+            else if (etapa === 2) {
+
+                document.getElementById("titulo").innerText =
+                    "🌸 ÚLTIMA CHANCE";
+
+                document.getElementById("texto").innerText =
+                    "Depois disso não tem como voltar atrás, viu? 🥺";
+
+            }
+
+
+            else if (etapa === 3) {
+
+                document.getElementById("titulo").innerText =
+                    "🍕 PARABÉNS!! 💗";
+
+                document.getElementById("texto").innerText =
+                    "Você ganhou uma pizza!! 🎀🍕";
+
+                document.getElementById("pizza").style.display =
+                    "block";
+
+                document.getElementById("sim").innerText =
+                    "COMER 🍕";
+
+                document.getElementById("nao").style.display =
+                    "none";
+
+            }
+
+
+            else {
+
+                document.getElementById("titulo").innerText =
+                    "💀";
+
+                document.getElementById("texto").innerText =
+                    "A pizza foi comida. Obrigado por participar 🤓☝";
+
+                document.getElementById("pizza").innerText =
+                    "💀";
+
+                document.getElementById("sim").innerText =
+                    "Feito pelo: Ricardo e assinatura do ChatGPT kakakaka";
+
+            }
+
+
+            // toca o som quando clicar
+            const som = document.getElementById("som");
+
+            if (som) {
+
+                som.currentTime = 0;
+
+                som.play().catch(() => {});
+
+            }
+
+        }
+
+
+        function fugir() {
+
+            const botao =
+                document.getElementById("nao");
+
+            botao.style.position =
+                "fixed";
+
+
+            const largura =
+                window.innerWidth - botao.offsetWidth - 20;
+
+            const altura =
+                window.innerHeight - botao.offsetHeight - 20;
+
+
+            botao.style.left =
+                Math.random() * largura + "px";
+
+
+            botao.style.top =
+                Math.random() * altura + "px";
+
+        }
+
+    </script>
 
 </body>
+
 </html>
