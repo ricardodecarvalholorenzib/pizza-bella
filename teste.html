@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bella Pizza | A melhor pizza da cidade</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #d92d20;
+    --red-dark: #a91f17;
+    --cream: #fffaf3;
+    --dark: #171412;
+    --gray: #706b67;
+    --border: #eee7df;
+    --green: #238636;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+}
+
+/* ================= HEADER ================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 74px;
+
+    background: rgba(255,250,243,.94);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4d4743;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: var(--red);
+}
+
+.cart-btn {
+    border: none;
+    background: var(--red);
+    color: white;
+
+    padding: 11px 17px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.cart-btn:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 70px 7%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20,12,8,.9),
+            rgba(20,12,8,.35)
+        ),
+        url("https://images.pexels.com/photos/5903276/pexels-photo-5903276.jpeg?cs=srgb&dl=pexels-roman-odintsov-5903276.jpg&fm=jpg")
+        center/cover;
+}
+
+.hero-content {
+    max-width: 600px;
+    color: white;
+}
+
+.badge {
+    display: inline-block;
+
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 6vw, 70px);
+    line-height: 1.05;
+}
+
+.hero h1 span {
+    color: #ff756b;
+}
+
+.hero p {
+    margin-top: 18px;
+
+    color: #eee;
+
+    max-width: 500px;
+
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.primary {
+    border: none;
+
+    background: var(--red);
+    color: white;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.secondary {
+    border: 1px solid rgba(255,255,255,.4);
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(5px);
+}
+
+/* ================= MAIN ================= */
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: 70px auto;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 28px;
+}
+
+.section-head h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+}
+
+.section-head p {
+    color: var(--gray);
+    margin-top: 6px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+
+    overflow-x: auto;
+
+    margin-bottom: 30px;
+}
+
+.category {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    font-weight: 600;
+}
+
+.category.active,
+.category:hover {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+}
+
+/* ================= MENU ================= */
+
+.menu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(270px, 1fr));
+
+    gap: 24px;
+}
+
+.card {
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 40px rgba(50,30,20,.10);
+}
+
+.card-image {
+    height: 220px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .4s;
+}
+
+.card:hover img {
+    transform: scale(1.06);
+}
+
+.favorite {
+    position: absolute;
+
+    top: 13px;
+    right: 13px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.9);
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 20px;
+}
+
+.description {
+    color: var(--gray);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-top: 7px;
+
+    min-height: 42px;
+}
+
+.card-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 18px;
+}
+
+.price {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.add {
+    border: none;
+
+    background: #fff0ee;
+
+    color: var(--red);
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.add:hover {
+    background: var(--red);
+    color: white;
+}
+
+/* ================= BANNER ================= */
+
+.special {
+    margin-top: 80px;
+
+    border-radius: 22px;
+
+    min-height: 270px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 45px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(120,20,15,.92),
+            rgba(120,20,15,.35)
+        ),
+        url("https://upload.wikimedia.org/wikipedia/commons/3/3a/Margherita_PIzza_%28Unsplash%29.jpg")
+        center/cover;
+}
+
+.special-content {
+    max-width: 530px;
+}
+
+.special h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 38px;
+}
+
+.special p {
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    margin-top: 100px;
+
+    background: #171412;
+
+    color: white;
+
+    padding: 50px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+footer .logo {
+    color: white;
+}
+
+footer p {
+    color: #aaa;
+
+    margin-top: 10px;
+
+    max-width: 350px;
+
+    line-height: 1.6;
+}
+
+/* ================= CART ================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.55);
+
+    z-index: 300;
+
+    display: none;
+}
+
+.cart {
+    position: absolute;
+
+    right: 0;
+    top: 0;
+
+    width: min(440px, 100%);
+
+    height: 100%;
+
+    background: white;
+
+    padding: 25px;
+
+    overflow-y: auto;
+}
+
+.cart-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-header h2 {
+    font-family: "Playfair Display", serif;
+}
+
+.close {
+    border: none;
+
+    background: #f4f1ed;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+.cart-item {
+    padding: 17px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.item-line {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.item-name {
+    font-weight: 700;
+}
+
+.item-price {
+    font-weight: 700;
+}
+
+.quantity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 12px;
+}
+
+.quantity button {
+    width: 28px;
+    height: 28px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f1ece7;
+
+    cursor: pointer;
+}
+
+.cart-total {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 25px;
+
+    font-size: 21px;
+}
+
+.checkout-btn {
+    width: 100%;
+
+    margin-top: 20px;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: var(--red);
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.6);
+
+    z-index: 500;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal-box {
+    background: white;
+
+    width: min(500px, 100%);
+
+    border-radius: 20px;
+
+    padding: 28px;
+}
+
+.modal-box h2 {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 8px;
+}
+
+.modal-box p {
+    color: var(--gray);
+    margin-bottom: 20px;
+}
+
+.field {
+    margin-bottom: 14px;
+}
+
+.field label {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-family: inherit;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.final-btn {
+    width: 100%;
+
+    border: none;
+
+    padding: 14px;
+
+    background: var(--red);
+
+    color: white;
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* ================= SUCCESS ================= */
+
+.success {
+    position: fixed;
+
+    inset: 0;
+
+    background: var(--cream);
+
+    z-index: 700;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+.success-box {
+    max-width: 500px;
+}
+
+.success-icon {
+    font-size: 70px;
+}
+
+.success h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 43px;
+
+    margin-top: 15px;
+}
+
+.success p {
+    color: var(--gray);
+
+    margin-top: 10px;
+
+    line-height: 1.6;
+}
+
+.order-number {
+    display: inline-block;
+
+    background: #fff0ee;
+
+    color: var(--red);
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    margin-top: 20px;
+
+    font-weight: 700;
+}
+
+.progress {
+    margin-top: 30px;
+
+    text-align: left;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    border: 1px solid var(--border);
+}
+
+.progress div {
+    margin: 12px 0;
+}
+
+.complete {
+    color: var(--green);
+
+    font-weight: 700;
+}
+
+.waiting {
+    color: #c57b00;
+
+    font-weight: 600;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 7%;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .special {
+        padding: 30px;
+    }
+
+    .special h2 {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        Bella <span>Pizza.</span>
+    </div>
+
+    <nav>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#especiais">Especiais</a>
+        <a href="#sobre">Sobre nós</a>
+    </nav>
+
+    <button class="cart-btn" onclick="openCart()">
+        🛒 Carrinho
+        <span id="cartCount">0</span>
+    </button>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🍕 Feita com carinho desde sempre
+        </div>
+
+        <h1>
+            Pizza boa é pizza
+            <span>compartilhada.</span>
+        </h1>
+
+        <p>
+            Ingredientes selecionados, massa artesanal e muito
+            queijo. Escolha sua favorita e monte seu pedido.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary"
+                    onclick="document.getElementById('cardapio').scrollIntoView({behavior:'smooth'})">
+                Ver cardápio
+            </button>
+
+            <button class="secondary"
+                    onclick="openCart()">
+                Meu carrinho
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CARDÁPIO -->
+
+<main class="container" id="cardapio">
+
+    <div class="section-head">
+
+        <div>
+            <h2>Nosso cardápio</h2>
+
+            <p>
+                Escolha seu sabor favorito.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="categories">
+
+        <button class="category active">
+            Todas
+        </button>
+
+        <button class="category">
+            🍕 Tradicionais
+        </button>
+
+        <button class="category">
+            ⭐ Especiais
+        </button>
+
+        <button class="category">
+            🍫 Doces
+        </button>
+
+        <button class="category">
+            🥤 Bebidas
+        </button>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <!-- PEPPERONI -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.pexels.com/photos/5903276/pexels-photo-5903276.jpeg?cs=srgb&dl=pexels-roman-odintsov-5903276.jpg&fm=jpg"
+                    alt="Pizza de pepperoni">
+
+                <button class="favorite"
+                        onclick="favoritar(this)">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>Pepperoni</h3>
+
+                <p class="description">
+                    Molho de tomate, muçarela, pepperoni
+                    e orégano.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span class="price">
+                        R$ 39,90
+                    </span>
+
+                    <button class="add"
+                            onclick="addItem('Pepperoni',39.90)">
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- MARGHERITA -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Margherita_PIzza_%28Unsplash%29.jpg"
+                    alt="Pizza Margherita">
+
+                <button class="favorite"
+                        onclick="favoritar(this)">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>Margherita</h3>
+
+                <p class="description">
+                    Molho de tomate, muçarela fresca,
+                    tomate e manjericão.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span class="price">
+                        R$ 36,90
+                    </span>
+
+                    <button class="add"
+                            onclick="addItem('Margherita',36.90)">
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUATRO QUEIJOS -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.pexels.com/photos/5175567/pexels-photo-5175567.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    alt="Pizza quatro queijos">
+
+                <button class="favorite"
+                        onclick="favoritar(this)">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>Quatro Queijos</h3>
+
+                <p class="description">
+                    Muçarela, provolone, parmesão
+                    e gorgonzola.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span class="price">
+                        R$ 42,90
+                    </span>
+
+                    <button class="add"
+                            onclick="addItem('Quatro Queijos',42.90)">
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- FRANGO -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.pexels.com/photos/3762069/pexels-photo-3762069.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    alt="Pizza de frango">
+
+                <button class="favorite"
+                        onclick="favoritar(this)">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>Frango com Catupiry</h3>
+
+                <p class="description">
+                    Frango desfiado, catupiry,
+                    muçarela e orégano.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span class="price">
+                        R$ 38,90
+                    </span>
+
+                    <button class="add"
+                            onclick="addItem('Frango com Catupiry',38.90)">
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CHOCOLATE -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    alt="Sobremesa de chocolate">
+
+                <button class="favorite"
+                        onclick="favoritar(this)">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>Chocolate</h3>
+
+                <p class="description">
+                    Chocolate cremoso e confeitos.
+                    Perfeita para fechar o pedido.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span class="price">
+                        R$ 34,90
+                    </span>
+
+                    <button class="add"
+                            onclick="addItem('Pizza de Chocolate',34.90)">
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PORTUGUESA -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <img
+                    src="https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    alt="Pizza">
+
+                <button class="favorite"
+                        onclick="favoritar(this)">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>Portuguesa</h3>
+
+                <p class="description">
+                    Presunto, ovos, cebola, ervilha,
+                    muçarela e azeitona.
+                </p>
+
+                <div class="card-bottom">
+
+                    <span class="price">
+                        R$ 39,90
+                    </span>
+
+                    <button class="add"
+                            onclick="addItem('Portuguesa',39.90)">
+                        + Adicionar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- ESPECIAL BELLA -->
+
+    <section class="special" id="especiais">
+
+        <div class="special-content">
+
+            <h2>
+                Uma pizza especial.
+            </h2>
+
+            <p>
+                Algumas pessoas merecem uma pizza feita
+                especialmente para elas.
+            </p>
+
+            <p style="margin-top:12px;">
+                E essa aqui é para você, Bella. ❤️
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer id="sobre">
+
+    <div>
+
+        <div class="logo">
+            Bella <span>Pizza.</span>
+        </div>
+
+        <p>
+            Pizza artesanal, ingredientes selecionados
+            e uma desculpa perfeita para reunir quem
+            você gosta.
+        </p>
+
+    </div>
+
+    <div>
+
+        <strong>Horário</strong>
+
+        <p>
+            Segunda a domingo<br>
+            18:00 — 23:30
+        </p>
+
+    </div>
+
+    <div>
+
+        <strong>Contato</strong>
+
+        <p>
+            📍 Ribeirão Preto, SP<br>
+            📞 (16) 99999-9999
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- CARRINHO -->
+
+<div class="overlay" id="cartOverlay">
+
+    <aside class="cart">
+
+        <div class="cart-header">
+
+            <h2>Seu pedido</h2>
+
+            <button class="close"
+                    onclick="closeCart()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-total">
+
+            <span>Total</span>
+
+            <strong id="cartTotal">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+        <button class="checkout-btn"
+                onclick="openCheckout()">
+            Continuar pedido
+        </button>
+
+    </aside>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+    <div class="modal-box">
+
+        <h2>Finalizar pedido</h2>
+
+        <p>
+            Só precisamos de algumas informações.
+        </p>
+
+        <div class="field">
+
+            <label>Nome</label>
+
+            <input
+                id="name"
+                type="text"
+                placeholder="Como podemos te chamar?"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Endereço</label>
+
+            <input
+                id="address"
+                type="text"
+                placeholder="Onde devemos entregar?"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Tamanho</label>
+
+            <select id="size">
+
+                <option>Grande — 8 fatias</option>
+
+                <option>Média — 6 fatias</option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label>Observação</label>
+
+            <textarea
+                id="note"
+                placeholder="Alguma observação?"
+            ></textarea>
+
+        </div>
+
+        <button class="final-btn"
+                onclick="finishOrder()">
+            🍕 Fazer pedido
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- SUCESSO -->
+
+<div class="success" id="success">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            🍕
+        </div>
+
+        <h1>
+            Pedido confirmado!
+        </h1>
+
+        <p>
+            Obrigado por pedir na Bella Pizza.
+            Sua pizza já entrou na fila de preparo.
+        </p>
+
+        <div class="order-number">
+            Pedido #<span id="orderNumber"></span>
+        </div>
+
+        <div class="progress">
+
+            <div class="complete">
+                ✓ Pedido recebido
+            </div>
+
+            <div class="complete">
+                ✓ Pagamento confirmado
+            </div>
+
+            <div class="waiting">
+                🔥 Preparando sua pizza...
+            </div>
+
+            <div>
+                🛵 Sai para entrega
+            </div>
+
+        </div>
+
+        <p style="margin-top:20px;">
+            E Bella... essa pizza tem um pequeno
+            detalhe que não aparece no cardápio. ❤️
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let cart = [];
+
+
+/* ================= CART ================= */
+
+function addItem(name, price) {
+
+    const existing = cart.find(
+        item => item.name === name
+    );
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+            name,
+            price,
+            quantity: 1
+        });
+
+    }
+
+    updateCart();
+
+}
+
+
+function updateCart() {
+
+    const container =
+        document.getElementById("cartItems");
+
+    container.innerHTML = "";
+
+    let total = 0;
+    let count = 0;
+
+
+    cart.forEach((item, index) => {
+
+        total += item.price * item.quantity;
+
+        count += item.quantity;
+
+        container.innerHTML += `
+
+            <div class="cart-item">
+
+                <div class="item-line">
+
+                    <span class="item-name">
+                        ${item.name}
+                    </span>
+
+                    <span class="item-price">
+                        R$ ${(item.price * item.quantity)
+                        .toFixed(2)
+                        .replace(".", ",")}
+                    </span>
+
+                </div>
+
+                <div class="quantity">
+
+                    <button onclick="changeQuantity(${index}, -1)">
+                        −
+                    </button>
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+                    <button onclick="changeQuantity(${index}, 1)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("cartTotal").innerText =
+        "R$ " +
+        total.toFixed(2).replace(".", ",");
+
+
+    document.getElementById("cartCount").innerText =
+        count;
+
+}
+
+
+function changeQuantity(index, amount) {
+
+    cart[index].quantity += amount;
+
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+    }
+
+    updateCart();
+
+}
+
+
+/* ================= OPEN CART ================= */
+
+function openCart() {
+
+    document.getElementById("cartOverlay")
+        .style.display = "block";
+
+}
+
+
+function closeCart() {
+
+    document.getElementById("cartOverlay")
+        .style.display = "none";
+
+}
+
+
+/* ================= CHECKOUT ================= */
+
+function openCheckout() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Seu carrinho está vazio. Escolha uma pizza primeiro 🍕"
+        );
+
+        return;
+
+    }
+
+    document.getElementById("checkoutModal")
+        .style.display = "flex";
+
+}
+
+
+/* ================= FINAL ================= */
+
+function finishOrder() {
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const address =
+        document.getElementById("address").value.trim();
+
+
+    if (!name || !address) {
+
+        alert(
+            "Preencha seu nome e endereço primeiro."
+        );
+
+        return;
+
+    }
+
+
+    const number =
+        Math.floor(1000 + Math.random() * 9000);
+
+
+    document.getElementById("orderNumber")
+        .innerText = number;
+
+
+    document.getElementById("checkoutModal")
+        .style.display = "none";
+
+    document.getElementById("cartOverlay")
+        .style.display = "none";
+
+    document.getElementById("success")
+        .style.display = "flex";
+
+
+    cart = [];
+
+    updateCart();
+
+}
+
+
+/* ================= FAVORITO ================= */
+
+function favoritar(button) {
+
+    if (button.innerText === "♡") {
+
+        button.innerText = "♥";
+        button.style.color = "#d92d20";
+
+    } else {
+
+        button.innerText = "♡";
+        button.style.color = "";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
